@@ -1,0 +1,8 @@
+####
+POST http://localhost:3000/api/links/createrandom
+Content-Type: application/json
+
+{
+    "href":"https://adammakesthings.dev",
+    "apiKey":"hunter2"
+}
