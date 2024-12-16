@@ -4,7 +4,7 @@
 
 import { api } from "@/trpc/server";
 import { redirect, RedirectType } from "next/navigation";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest } from "next/server";
 
 export async function GET(
   request: NextRequest,

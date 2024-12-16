@@ -1,25 +1,14 @@
-import Link from "next/link";
-
-import { LatestPost } from "@/app/_components/post";
-import { auth } from "@/server/auth";
 import { api, HydrateClient } from "@/trpc/server";
-import { Metadata } from "next";
-import { redirect } from "next/navigation";
+import type { Metadata } from "next";
 
 export default async function Home() {
-  const session = await auth();
-
-  if (!session) {
-    redirect("/api/auth/signin");
-  }
-
-  api.link.getAll.prefetch();
+  void api.link.getAll.prefetch();
 
   return (
     <HydrateClient>
       <main>
         <div className="flex h-screen w-screen flex-col items-center justify-center bg-gray-800 font-sans text-xl">
-          <h1>Adam's awesome link shortener</h1>
+          <h1>Adam{"'"}s awesome link shortener</h1>
           <div className="my-10 flex h-2/3 w-2/3 rounded-md bg-gray-600 shadow-lg">
             <div className="text-md flex h-full w-2/3 flex-col items-center p-5">
               <h4 className="mb-2">All links</h4>
