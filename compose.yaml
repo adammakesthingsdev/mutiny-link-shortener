@@ -10,7 +10,7 @@
 services:
   server:
     platform: "linux/amd64"
-    container_name: "nextjs"
+    container_name: "mutiny-link-shortener"
     build:
       context: .
       dockerfile: Dockerfile
@@ -24,18 +24,6 @@ services:
     networks:
       - web
     image: t3-app
-
-  nginx:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - /etc/ssl:/etc/nginx/ssl:ro
-    networks:
-      - web
 
 networks:
   web:

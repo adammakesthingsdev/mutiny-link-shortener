@@ -1,3 +1,4 @@
+#!/bin/sh
 #
 # This program is run by the Docker container on initialization.
 # It makes sure the remote schema is updated before launching the programs

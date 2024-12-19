@@ -74,9 +74,11 @@ COPY --from=builder /app/prisma ./prisma
 
 # Copy start executable
 COPY --from=builder /app/launch.sh ./launch.sh
+RUN sed -i -e 's/\r$//' ./launch.sh
+RUN chmod +x ./launch.sh
 
 # Expose port and set 
 EXPOSE 3000
 ENV PORT=3000
 
-CMD ["./launch.sh"]
+ENTRYPOINT ["/app/launch.sh" ]
