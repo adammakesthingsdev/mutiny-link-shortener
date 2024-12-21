@@ -5,10 +5,12 @@
 
 name: Deploy to development server
 
-# Should run on every branch push
+# Should run only once build is complete
 on:
   workflow_dispatch:
-  push:
+  workflow_run:
+    workflows: ["Publish to Github Packages"]
+    types: [completed]
 
 jobs:
   deploy:
