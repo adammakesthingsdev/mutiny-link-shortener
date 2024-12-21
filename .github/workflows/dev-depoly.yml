@@ -1,0 +1,30 @@
+##
+## This action deploys a development build to a private
+## Docker development server (running Portainer).
+##
+
+name: Deploy to development server
+
+# Should run on every branch push
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy stack to Portainer
+        uses: carlrygart/portainer-stack-deploy@v1
+        with:
+          portainer-host: ${{secrets.DEV_PORTAINER_HOST}}
+          username: ${{secrets.DEV_PORTAINER_USERNAME}}
+          password: ${{secrets.DEV_PORTAINER_PASSWORD}}
+          stack-name: ${{secrets.DEV_STACK_NAME}}
+          stack-definition: docker/dev-stack-definition
+          template-variables: '{"image-url":"${{vars.IMAGE_URL}}:latest"}'

@@ -1,0 +1,12 @@
+##
+## This is the Docker stack definition for development builds.
+##
+
+version: "3.7"
+
+services:
+  server:
+    image: { { image-url } }
+    deploy:
+      update_config:
+        order: start-first

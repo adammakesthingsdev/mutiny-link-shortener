@@ -1,9 +1,9 @@
-name: Publish to Github Packages
+##
+## This action deploys the package to Github Container
+## Registry and tags/labels as needed.
+##
 
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
+name: Publish to Github Packages
 
 on:
   push:
@@ -84,8 +84,9 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:dev
           labels: ${{steps.meta.outputs.labels}}
-
           cache-from: type=gha
           cache-to: type=gha,mode=max

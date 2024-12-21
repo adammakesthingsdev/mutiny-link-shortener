@@ -60,6 +60,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
     links         Link[]
+    admin         Boolean
 }
 
 model VerificationToken {

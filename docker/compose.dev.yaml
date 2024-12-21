@@ -1,0 +1,19 @@
+##
+## Docker Compose/Swarm config file for Github Actions-based
+## development CI/CD on Portainer.
+##
+
+services:
+  server:
+    image: "https://ghcr.io/adammakesthingsdev/mutiny-link-shortener:latest"
+    networks:
+      - dev-public
+    ports:
+      - 3000:3000
+    deploy:
+      update_config:
+        order: start-first
+
+networks:
+  dev-public:
+    driver: bridge
