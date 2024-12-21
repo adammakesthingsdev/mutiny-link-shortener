@@ -26,5 +26,5 @@ jobs:
           username: ${{secrets.DEV_PORTAINER_USERNAME}}
           password: ${{secrets.DEV_PORTAINER_PASSWORD}}
           stack-name: ${{secrets.DEV_STACK_NAME}}
-          stack-definition: docker/dev-stack-definition
+          stack-definition: docker/compose.dev.yaml
           template-variables: '{"image-url":"${{vars.IMAGE_URL}}:latest"}'
