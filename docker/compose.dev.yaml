@@ -8,8 +8,6 @@ services:
     image: "https://ghcr.io/adammakesthingsdev/mutiny-link-shortener:latest"
     networks:
       - dev-public
-    ports:
-      - 3000:3000
     deploy:
       update_config:
         order: start-first
