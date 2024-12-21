@@ -4,14 +4,26 @@
 ##
 
 services:
-  server:
-    image: "https://ghcr.io/adammakesthingsdev/mutiny-link-shortener:latest"
+  shortener:
+    image: "ghcr.io/adammakesthingsdev/mutiny-link-shortener:latest"
+    container_name: "link-shortener"
+
     networks:
-      - dev-public
+      - bridge
+
+    environment:
+      - AUTH_SECRET
+      - AUTH_GITHUB_ID
+      - AUTH_GITHUB_SECRET
+      - DATABASE_URL
+      - DIRECT_URL
+      - ADMIN_API_KEY
+
     deploy:
       update_config:
         order: start-first
 
 networks:
-  dev-public:
-    driver: bridge
+  bridge:
+    external:
+      name: bridge

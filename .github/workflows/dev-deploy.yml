@@ -14,9 +14,18 @@ on:
 
 jobs:
   deploy:
-    name: Deploy
+    name: Deploy to dev
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    environment: development
+
+    env:
+      AUTH_SECRET: ${{secrets.LINK_AUTH_SECRET}}
+      AUTH_GITHUB_ID: ${{secrets.LINK_AUTH_GITHUB_ID}}
+      AUTH_GITHUB_SECRET: ${{secrets.LINK_AUTH_GITHUB_SECRET}}
+      DATABASE_URL: ${{secrets.LINK_DATABASE_URL}}
+      DIRECT_URL: ${{secrets.LINK_DIRECT_URL}}
+      ADMIN_API_KEY: ${{secrets.LINK_ADMIN_API_KEY}}
 
     steps:
       - uses: actions/checkout@v2
@@ -24,9 +33,9 @@ jobs:
       - name: Deploy stack to Portainer
         uses: carlrygart/portainer-stack-deploy@v1
         with:
-          portainer-host: ${{secrets.DEV_PORTAINER_HOST}}
-          username: ${{secrets.DEV_PORTAINER_USERNAME}}
-          password: ${{secrets.DEV_PORTAINER_PASSWORD}}
-          stack-name: ${{secrets.DEV_STACK_NAME}}
+          portainer-host: ${{secrets.PORTAINER_HOST}}
+          username: ${{secrets.PORTAINER_USERNAME}}
+          password: ${{secrets.PORTAINER_PASSWORD}}
+          stack-name: ${{vars.STACK_NAME}}
           stack-definition: docker/compose.dev.yaml
           template-variables: '{"image-url":"${{vars.IMAGE_URL}}:latest"}'
